@@ -37,7 +37,7 @@ public extension Tag {
     /// - false, which disables pushing the fetched URL if it would otherwise be pushed due to inheritance or hx-boost.
     /// - A URL to be pushed into the location bar. This may be relative or absolute, as per history.pushState().
     func hxPushUrl(_ value: Bool) -> Self {
-        attribute("hx-boost", String(value))
+        attribute("hx-push-url", String(value))
     }
 
     /// The hx-push-url attribute allows you to push a URL into the browser location history. This creates a new history entry, allowing navigation with the browser’s back and forward buttons. htmx snapshots the current DOM and saves it into its history cache, and restores from this cache on navigation.
@@ -48,7 +48,23 @@ public extension Tag {
     /// - false, which disables pushing the fetched URL if it would otherwise be pushed due to inheritance or hx-boost.
     /// - A URL to be pushed into the location bar. This may be relative or absolute, as per history.pushState().
     func hxPushUrl(_ url: String) -> Self {
-        attribute("hx-get", url)
+        attribute("hx-push-url", url)
     }
     
+    /// The hx-select attribute allows you to select the content you want swapped from a response. The value of this attribute is a CSS query selector of the element or elements to select from the response.
+    func hxSelect(_ value: String) -> Self {
+        attribute("hx-select", value)
+    }
+    
+    /// The hx-select-oob attribute allows you to select content from a response to be swapped in via an out-of-band swap.
+    ///
+    /// The value of this attribute is comma separated list of elements to be swapped out of band. This attribute is almost always paired with hx-select.
+    func hxSelectOob(_ value: String) -> Self {
+        attribute("hx-select-oob", value)
+    }  
+    
+    func hxSwap(_ value: HxSwap, modifiers: [HxSwap.Modifier]) -> Self {
+        #warning("modifiers string conversion")
+        attribute("hx-swap", value.rawValue)
+    }
 }
