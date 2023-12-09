@@ -16,6 +16,7 @@ let package = Package(
     ],
     dependencies:   [
         .package(url: "https://github.com/atacan/BinaryBirds-swift-html", branch: "main"),
+        .package(url: "https://github.com/atacan/BinaryBirds-swift-css", branch: "for-html-styling"),
     ],
     targets: [
         // Targets are the basic building blocks of a package, defining a module or a test suite.
@@ -24,6 +25,7 @@ let package = Package(
             name: "SwiftHtmlHtmx",
         dependencies: [
             .product(name: "SwiftHtml", package: "BinaryBirds-swift-html"),
+            .product(name: "SwiftCss", package: "BinaryBirds-swift-css"),
         ]
         ),
         .testTarget(
