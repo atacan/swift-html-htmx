@@ -38,6 +38,7 @@ public enum HxSwap: String {
         case focusScroll(Bool)
         
         public enum ScrollShow {
+            /// `show:top` or `show:bottom` or `scroll:top` or `scroll:bottom`
             case targetElement(TopBottom)
             /// e.g. `show:#another-div:top`
             case anotherElement(selector: String, TopBottom)
