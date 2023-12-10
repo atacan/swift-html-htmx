@@ -101,6 +101,7 @@ public extension Tag {
         return attribute("", "")
     }
     
+    /// adds an htmx class
     func htmxClass(_ value: HtmxClass) -> Self {
         `class`(add: value.rawValue)
     }
