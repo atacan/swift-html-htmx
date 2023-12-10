@@ -48,9 +48,43 @@ public enum HxSwap: String {
             /// `show:none`
             case none
             
-            public enum TopBottom {
+            public enum TopBottom: String {
                 case bottom
                 case top
+            }
+            
+            var description: String {
+                switch self {
+                case .targetElement(let topBottom):
+                    topBottom.rawValue
+                case .anotherElement(let selector, let topBottom):
+                    selector + ":" + topBottom.rawValue
+                case .window(let topBottom):
+                    "window:" + topBottom.rawValue
+                case .none:
+                    "none"
+                }
+            }
+        }
+        
+        var description: String {
+            switch self {
+            case .transitionTrue:
+                "transition:true"
+            case .transition(let transitionDurationValue):
+                "transition:" + transitionDurationValue.rawValue
+            case .swap(let transitionDurationValue):
+                "swap:" + transitionDurationValue.rawValue
+            case .settle(let transitionDurationValue):
+                "settle:" + transitionDurationValue.rawValue
+            case .ignoreTitle:
+                "ignoreTitle:true"
+            case .scroll(let scrollShow):
+                "scroll:" + scrollShow.description
+            case .show(let scrollShow):
+                "show:" + scrollShow.description
+            case .focusScroll(let bool):
+                "focus-scroll:" + String(bool)
             }
         }
     }

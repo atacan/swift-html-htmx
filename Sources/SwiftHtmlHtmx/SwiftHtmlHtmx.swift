@@ -26,7 +26,7 @@ public extension Tag {
     ///
     /// There are two forms of this attribute, one in which you specify the event as part of the attribute name after a colon (hx-on:click, for example), and a deprecated form that uses the hx-on attribute directly. The latter should only be used if IE11 support is required.
     func hxON(_ event: JSEvent, _ script: String) -> Self {
-        attribute("hx-on:" + event.rawValue, script)
+        attribute("hx-on:" + event.description, script)
     }
     
     /// The hx-push-url attribute allows you to push a URL into the browser location history. This creates a new history entry, allowing navigation with the browser’s back and forward buttons. htmx snapshots the current DOM and saves it into its history cache, and restores from this cache on navigation.
@@ -63,8 +63,42 @@ public extension Tag {
         attribute("hx-select-oob", value)
     }  
     
-    func hxSwap(_ value: HxSwap, modifiers: [HxSwap.Modifier]) -> Self {
-        #warning("modifiers string conversion")
-        attribute("hx-swap", value.rawValue)
+    func hxSwap(_ value: HxSwap, modifiers: [HxSwap.Modifier] = []) -> Self {
+        attribute(
+            "hx-swap",
+            value.rawValue + modifiers.map(\.description).joined(separator: " ")
+        )
     }
+
+    /// The hx-swap-oob attribute allows you to specify that some content in a response should be swapped into the DOM somewhere other than the target, that is “Out of Band”. This allows you to piggy back updates to other element updates on a response.
+    /// If the value is true or outerHTML (which are equivalent) the element will be swapped inline.
+    func hxSwapOobTrue() -> Self {
+        attribute("hx-swap-oob", "true")
+    }
+
+    /// any valid hx-swap value
+    func hxSwapOob(_ value: HxSwap) -> Self {
+        attribute("hx-swap-oob", value.rawValue)
+    }
+    
+    /// any valid hx-swap value, followed by a colon, followed by a CSS selector
+    func hxSwapOob(_ value: HxSwap, _ selector: String) -> Self {
+        attribute("hx-swap-oob", value.rawValue + ":" + selector)
+    }
+    
+    /// The hx-target attribute allows you to target a different element for swapping than the one issuing the AJAX request.
+    func hxTarget(_ value: HxTarget) -> Self {
+        attribute("hx-target", value.description)
+    }
+    
+    /// The hx-trigger attribute allows you to specify what triggers an AJAX request. A trigger value can be one of the following:
+    func hxTrigger(_ value: [HxTrigger]) -> Self {
+        attribute("hx-trigger", value.map(\.description).joined(separator: ", "))
+    }
+    
+    func hxVals(_ value: HxVals) -> Self {
+        #warning("unimplemented")
+        return attribute("", "")
+    }
+    
 }
