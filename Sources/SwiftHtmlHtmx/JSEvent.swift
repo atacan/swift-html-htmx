@@ -22,10 +22,10 @@ public enum JSEvent {
 
         var description: String {
             switch self {
-                case let .custom(value):
-                    return value
-                default:
-                    return String(describing: self)
+            case let .custom(value):
+                return value
+            default:
+                return String(describing: self)
             }
         }
     }
@@ -81,4 +81,91 @@ public enum JSEvent {
             }
         }
     }
+}
+
+public enum HtmxEvent: String {
+    /// send this event to an element to abort a request
+    case abort = "htmx:abort"
+    /// triggered after an AJAX request has completed processing a successful response
+    case afterOnLoad = "htmx:afterOnLoad"
+    /// triggered after htmx has initialized a node
+    case afterProcessNode = "htmx:afterProcessNode"
+    /// triggered after an AJAX request has completed
+    case afterRequest = "htmx:afterRequest"
+    /// triggered after the DOM has settled
+    case afterSettle = "htmx:afterSettle"
+    /// triggered after new content has been swapped in
+    case afterSwap = "htmx:afterSwap"
+    /// triggered before htmx disables an element or removes it from the DOM
+    case beforeCleanupElement = "htmx:beforeCleanupElement"
+    /// triggered before any response processing occurs
+    case beforeOnLoad = "htmx:beforeOnLoad"
+    /// triggered before htmx initializes a node
+    case beforeProcessNode = "htmx:beforeProcessNode"
+    /// triggered before an AJAX request is made
+    case beforeRequest = "htmx:beforeRequest"
+    /// triggered before a swap is done, allows you to configure the swap
+    case beforeSwap = "htmx:beforeSwap"
+    /// triggered just before an ajax request is sent
+    case beforeSend = "htmx:beforeSend"
+    /// triggered before the request, allows you to customize parameters, headers
+    case configRequest = "htmx:configRequest"
+    /// triggered after a trigger occurs on an element, allows you to cancel (or delay) issuing the AJAX request
+    case confirm = "htmx:confirm"
+    /// triggered on an error during cache writing
+    case historyCacheError = "htmx:historyCacheError"
+    /// triggered on a cache miss in the history subsystem
+    case historyCacheMiss = "htmx:historyCacheMiss"
+    /// triggered on a unsuccessful remote retrieval
+    case historyCacheMissError = "htmx:historyCacheMissError"
+    /// triggered on a successful remote retrieval
+    case historyCacheMissLoad = "htmx:historyCacheMissLoad"
+    /// triggered when htmx handles a history restoration action
+    case historyRestore = "htmx:historyRestore"
+    /// triggered before content is saved to the history cache
+    case beforeHistorySave = "htmx:beforeHistorySave"
+    /// triggered when new content is added to the DOM
+    case load = "htmx:load"
+    /// triggered when an element refers to a SSE event in its trigger, but no parent SSE source has been defined
+    case noSSESourceError = "htmx:noSSESourceError"
+    /// triggered when an exception occurs during the onLoad handling in htmx
+    case onLoadError = "htmx:onLoadError"
+    /// triggered after an out of band element as been swapped in
+    case oobAfterSwap = "htmx:oobAfterSwap"
+    /// triggered before an out of band element swap is done, allows you to configure the swap
+    case oobBeforeSwap = "htmx:oobBeforeSwap"
+    /// triggered when an out of band element does not have a matching ID in the current DOM
+    case oobErrorNoTarget = "htmx:oobErrorNoTarget"
+    /// triggered after a prompt is shown
+    case prompt = "htmx:prompt"
+    /// triggered after an url is pushed into history
+    case pushedIntoHistory = "htmx:pushedIntoHistory"
+    /// triggered when an HTTP response error (non-200 or 300 response code) occurs
+    case responseError = "htmx:responseError"
+    /// triggered when a network error prevents an HTTP request from happening
+    case sendError = "htmx:sendError"
+    /// triggered when an error occurs with a SSE source
+    case sseError = "htmx:sseError"
+    /// triggered when a SSE source is opened
+    case sseOpen = "htmx:sseOpen"
+    /// triggered when an error occurs during the swap phase
+    case swapError = "htmx:swapError"
+    /// triggered when an invalid target is specified
+    case targetError = "htmx:targetError"
+    /// triggered when a request timeout occurs
+    case timeout = "htmx:timeout"
+    /// triggered before an element is validated
+    case validation_validate = "htmx:validation:validate"
+    /// triggered when an element fails validation
+    case validation_failed = "htmx:validation:failed"
+    /// triggered when a request is halted due to validation errors
+    case validation_halted = "htmx:validation:halted"
+    /// triggered when an ajax request aborts
+    case xhr_abort = "htmx:xhr:abort"
+    /// triggered when an ajax request ends
+    case xhr_loadend = "htmx:xhr:loadend"
+    /// triggered when an ajax request starts
+    case xhr_loadstart = "htmx:xhr:loadstart"
+    /// triggered periodically during an ajax request that supports progress events
+    case xhr_progress = "htmx:xhr:progress"
 }
