@@ -4,7 +4,7 @@
 	import SwiftCss
 
 public enum HxTrigger {
-    case event(JSEvent, filter: [JSEvent.Filter], modifier: [JSEvent.Modifier])
+    case event(HtmxEvent, filter: [EventFilter], modifier: [EventModifier])
     case polling(every: TransitionDurationValue, filter: [String])
 
     var description: String {
